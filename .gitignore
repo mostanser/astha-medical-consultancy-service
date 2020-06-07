@@ -6,7 +6,6 @@
 /doc/plato/
 /node_modules/
 /npm-debug.log
-/src/config.php
 /src/storage/cache/*
 !/src/storage/cache/.htaccess
 !/src/storage/cache/index.html
@@ -18,4 +17,3 @@
 !/src/storage/sessions/index.html
 /src/storage/uploads/*
 /!src/storage/uploads/index.html
-/vendor/
