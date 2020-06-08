@@ -17,3 +17,5 @@
 !/src/storage/sessions/index.html
 /src/storage/uploads/*
 /!src/storage/uploads/index.html
+.env
+config.php
