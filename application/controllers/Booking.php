@@ -260,6 +260,13 @@ class Booking extends CI_Controller {
         }
     }
 
+    public function patientform()
+    {
+        $view = [];
+        $this->load->view('appointments/patient_form', $view);
+
+    }
+
 
 
 }

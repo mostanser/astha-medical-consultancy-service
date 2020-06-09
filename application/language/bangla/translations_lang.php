@@ -329,3 +329,6 @@ $lang['patient_smokes_or_drinks'] = 'পেশেন্টের ধূমপা
 $lang['patient_contact_from_abroad_returned_person'] = 'পেশেণ্ট কি বিদেশ ফেরত এমন কারো সংস্পর্সে এসেছিলেন গত কয়েক মাসের মধ্যে?';
 $lang['patient_symptoms_seen_in_other_family_members'] = 'যে সমস্যাগুলির কথা বললেন তা পরিবারের অন্য কারো আছে কিনা?';
 $lang['patient_if_female_mention_last_period'] = 'সর্বশেষ মাসিক কবে শুরু হয়েছিলো তা লিখুন';
+
+//== Customer Details
+

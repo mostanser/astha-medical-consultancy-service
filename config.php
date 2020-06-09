@@ -30,7 +30,7 @@ class Config {
     // GENERAL SETTINGS
     // ------------------------------------------------------------------------
 
-    const BASE_URL      = 'http://localhost/astha-medical-consultancy-service/';
+    const BASE_URL      = 'http://amcs.test';
     const LANGUAGE      = 'english';
     const DEBUG_MODE    = FALSE;
 
@@ -39,9 +39,9 @@ class Config {
     // ------------------------------------------------------------------------
 
     const DB_HOST       = 'localhost';
-    const DB_NAME       = 'astha_doc_booking';
+    const DB_NAME       = 'amcs';
     const DB_USERNAME   = 'root';
-    const DB_PASSWORD   = 'mysql';
+    const DB_PASSWORD   = '';
 
     // ------------------------------------------------------------------------
     // GOOGLE CALENDAR SYNC
