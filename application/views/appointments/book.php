@@ -15,8 +15,24 @@
     <link rel="stylesheet" type="text/css" href="<?= asset_url('assets/css/frontend.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?= asset_url('assets/css/general.css') ?>">
 
-    <link rel="icon" type="image/x-icon" href="<?= asset_url('assets/img/favicon.ico') ?>">
-    <link rel="icon" sizes="192x192" href="<?= asset_url('assets/img/logo.png') ?>">
+    <link rel="apple-touch-icon" sizes="57x57" href="<?= asset_url('assets/img/icon/apple-icon-57x57.png') ?>">
+    <link rel="apple-touch-icon" sizes="60x60" href="<?= asset_url('assets/img/icon/apple-icon-60x60.png') ?>">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?= asset_url('assets/img/icon/apple-icon-72x72.png') ?>">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?= asset_url('assets/img/icon/apple-icon-76x76.png') ?>">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?= asset_url('assets/img/icon/apple-icon-114x114.png') ?>">
+    <link rel="apple-touch-icon" sizes="120x120" href="<?= asset_url('assets/img/icon/apple-icon-120x120.png') ?>">
+    <link rel="apple-touch-icon" sizes="144x144" href="<?= asset_url('assets/img/icon/apple-icon-144x144.png') ?>">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?= asset_url('assets/img/icon/apple-icon-152x152.png') ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= asset_url('assets/img/icon/apple-icon-180x180.png') ?>">
+    <link rel="icon" type="image/png" sizes="192x192"  href="<?= asset_url('assets/img/icon/android-icon-192x192.png') ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= asset_url('assets/img/icon/favicon-32x32.png') ?>">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?= asset_url('assets/img/icon/favicon-96x96.png') ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= asset_url('assets/img/icon/favicon-16x16.png') ?>">
+    <link rel="manifest" href="<?= asset_url('assets/img/icon/manifest.json')  ?>">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="<?= asset_url('assets/img/icon/ms-icon-144x144.png') ?>">
+    <meta name="theme-color" content="#ffffff">
+
 </head>
 
 <body>
@@ -27,7 +43,11 @@
                 <!-- FRAME TOP BAR -->
 
                 <div id="header">
-                    <span id="company-name"><?= $company_name ?></span>
+                    <div id="header-logo" class="">
+                        <img style="height: 60px;float: left;margin-left: 10px;margin-top: 7px;" src="<?= base_url('assets/img/astha-logo.jpg') ?>">
+                        <span id="company-name"><?= $company_name ?></span>
+                    </div>
+
 
                     <div id="steps">
                         <div id="step-1" class="book-step active-step" title="<?= lang('step_one_title') ?>">
@@ -89,11 +109,13 @@
 
                         <div class="frame-content">
                             <div class="form-group">
+                                <!--
                                 <label for="select-service">
                                     <strong><?= lang('select_service') ?></strong>
                                 </label>
+                                -->
 
-                                <select id="select-service" class="col-xs-12 col-sm-4 form-control">
+                                <select id="select-service" class="col-xs-12 col-sm-4 form-control" disabled>
                                     <?php
                                         // Group services by category, only if there is at least one service with a parent category.
                                         $has_category = FALSE;
@@ -149,11 +171,12 @@
                             </div>
 
                             <div class="form-group">
+                                <!--
                                 <label for="select-provider">
                                     <strong><?= lang('select_provider') ?></strong>
                                 </label>
-
-                                <select id="select-provider" class="col-xs-12 col-sm-4 form-control"></select>
+                                -->
+                                <select id="select-provider" class="col-xs-12 col-sm-4 form-control" disabled></select>
                             </div>
 
                             <div id="service-description" style="display:none;"></div>
@@ -161,7 +184,7 @@
                     </div>
 
                     <div class="command-buttons">
-                        <button type="button" id="button-next-1" class="btn button-next btn-primary"
+                        <button type="button" id="button-next-1" class="btn button-next btn-warning"
                                 data-step_index="1">
                             <?= lang('next') ?>
                             <span class="glyphicon glyphicon-forward"></span>
@@ -177,11 +200,11 @@
                         <h3 class="frame-title"><?= lang('step_two_title') ?></h3>
 
                         <div class="frame-content row">
-                            <div class="col-xs-12 col-sm-6">
+                            <div class="col-xs-12 col-sm-5">
                                 <div id="select-date"></div>
                             </div>
 
-                            <div class="col-xs-12 col-sm-6">
+                            <div class="col-xs-12 col-sm-7">
                                 <div id="available-hours"></div>
                             </div>
                         </div>
@@ -193,7 +216,7 @@
                             <span class="glyphicon glyphicon-backward"></span>
                             <?= lang('back') ?>
                         </button>
-                        <button type="button" id="button-next-2" class="btn button-next btn-primary"
+                        <button type="button" id="button-next-2" class="btn button-next btn-warning"
                                 data-step_index="2">
                             <?= lang('next') ?>
                             <span class="glyphicon glyphicon-forward"></span>
@@ -203,32 +226,55 @@
 
                 <!-- ENTER CUSTOMER DATA -->
 
-                <div id="wizard-frame-3" class="wizard-frame" style="display:none;">
+                <div id="wizard-frame-3" class="wizard-frame" style="display:none; height: 640px;">
                     <div class="frame-container">
 
                         <h3 class="frame-title"><?= lang('step_three_title') ?></h3>
 
                         <div class="frame-content row">
-                            <div class="col-xs-12 col-sm-6">
-                                <div class="form-group">
+                            <div class="col-xs-12">
+                                <!--<div class="form-group">
                                     <label for="first-name" class="control-label"><?= lang('first_name') ?> *</label>
                                     <input type="text" id="first-name" class="required form-control" maxlength="100" />
                                 </div>
                                 <div class="form-group">
                                     <label for="last-name" class="control-label"><?= lang('last_name') ?> *</label>
                                     <input type="text" id="last-name" class="required form-control" maxlength="120" />
+                                </div>-->
+
+                                <div class="form-group">
+                                    <label for="full-name" class="control-label"><?= lang('full_name') ?> *</label>
+                                    <input type="text" id="full-name" class="required form-control" maxlength="100" value="Mostanser Billah"/>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="email" class="control-label"><?= lang('email') ?> *</label>
-                                    <input type="text" id="email" class="required form-control" maxlength="120" />
+                                    <input type="text" id="email" class="required form-control" maxlength="120" value="billahnorm@gmail.com"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="phone-number" class="control-label"><?= lang('phone_number') ?> *</label>
-                                    <input type="text" id="phone-number" class="required form-control" maxlength="60" />
+                                    <input type="text" id="phone-number" class="required form-control" maxlength="60" value="01717619996"/>
                                 </div>
+                                <div class="form-group">
+                                    <label for="password"><?= lang('password') ?> *</label>
+                                    <input type="password" id="password" class="form-control required" maxlength="512" value="1236">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password-confirm"><?= lang('retype_password') ?> *</label>
+                                    <input type="password" id="password-confirm" class="form-control required" maxlength="512" value="1236">
+                                </div>
+
+                                <inpt type="hidden" name="country" value="Bangladesh" id="country"/>
+                                <!--
+                                <inpt type="hidden" name="city" value="Dhaka" id="city"/>
+                                <inpt type="hidden" name="state" value="Dhaka" id="state"/>
+                                <inpt type="hidden" name="zip" value="1217" id="zip"/>
+                                -->
+                                <input type="hidden" value="430" name="amount" id="total_amount"/>
+
                             </div>
 
-                            <div class="col-xs-12 col-sm-6">
+                            <!--<div class="col-xs-12 col-sm-6">
                                 <div class="form-group">
                                     <label for="address" class="control-label"><?= lang('address') ?></label>
                                     <input type="text" id="address" class="form-control" maxlength="120" />
@@ -245,7 +291,7 @@
                                     <label for="notes" class="control-label"><?= lang('notes') ?></label>
                                     <textarea id="notes" maxlength="500" class="form-control" rows="3"></textarea>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <?php if ($display_terms_and_conditions): ?>
                             <label>
@@ -282,7 +328,7 @@
                                 data-step_index="3"><span class="glyphicon glyphicon-backward"></span>
                             <?= lang('back') ?>
                         </button>
-                        <button type="button" id="button-next-3" class="btn button-next btn-primary"
+                        <button type="button" id="button-next-3" class="btn button-next btn-warning"
                                 data-step_index="3">
                             <?= lang('next') ?>
                             <span class="glyphicon glyphicon-forward"></span>
@@ -299,6 +345,11 @@
                             <div id="appointment-details" class="col-xs-12 col-sm-6"></div>
                             <div id="customer-details" class="col-xs-12 col-sm-6"></div>
                         </div>
+
+                        <div class="col-xs-12 col-sm-12">
+                            <img id="paywith-logo-sslcomm" style="width: 100%" class="pull-right" src="<?= base_url('assets/img/paywithlogo.jpg') ?>" />
+                        </div>
+
                         <?php if ($this->settings_model->get_setting('require_captcha') === '1'): ?>
                         <div class="frame-content row">
                             <div class="col-xs-12 col-sm-6">
@@ -321,9 +372,9 @@
                             <?= lang('back') ?>
                         </button>
                         <form id="book-appointment-form" style="display:inline-block" method="post">
-                            <button id="book-appointment-submit" type="button" class="btn btn-success">
+                            <button id="book-appointment-submit" type="button" class="btn btn-lg btn-danger">
                                 <span class="glyphicon glyphicon-ok"></span>
-                                <?= !$manage_mode ? lang('confirm') : lang('update') ?>
+                                <?= !$manage_mode ? lang('confirm_and_pay') : lang('update') ?>
                             </button>
                             <input type="hidden" name="csrfToken" />
                             <input type="hidden" name="post_data" />
@@ -335,7 +386,7 @@
 
                 <div id="frame-footer">
                     Powered By
-                    <a href="http://easyappointments.org" target="_blank">Easy!Appointments</a>
+                    <a href="https://ris10.com" target="_blank">Ruhama IT Solutions</a>
                     |
                     <span id="select-language" class="label label-success">
     		        	<?= ucfirst($this->config->item('language')) ?>

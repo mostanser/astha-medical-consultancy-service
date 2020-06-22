@@ -97,6 +97,7 @@ class Customers_Model extends CI_Model {
      */
     protected function _insert($customer)
     {
+        $this->load->helper('general');
         // Before inserting the customer we need to get the customer's role id
         // from the database and assign it to the new record as a foreign key.
         $customer_role_id = $this->db
@@ -106,13 +107,54 @@ class Customers_Model extends CI_Model {
             ->get()->row()->id;
 
         $customer['id_roles'] = $customer_role_id;
+        $password = $customer['password'];
+        unset($customer['password']);
 
         if ( ! $this->db->insert('ea_users', $customer))
         {
             throw new Exception('Could not insert customer to the database.');
         }
 
-        return (int)$this->db->insert_id();
+        $provider['id'] = (int) $this->db->insert_id();
+        $settings['id_users'] = $provider['id'];
+        $settings['salt'] = generate_salt();
+        $settings['password'] = hash_password($settings['salt'], $password);
+        $settings['notifications'] = 1;
+        $settings['username'] = $customer['phone_number'];
+
+        $this->save_settings($settings, $provider['id']);
+
+        return $provider['id'];
+    }
+
+    /**
+     * Save the secretary settings (used from insert or update operation).
+     *
+     * @param array $settings Contains the setting values.
+     * @param int $provider_id Record id of the secretary.
+     *
+     * @throws Exception If $secretary_id argument is invalid.
+     * @throws Exception If $settings argument is invalid.
+     */
+    protected function save_settings($settings, $provider_id)
+    {
+        if ( ! is_numeric($provider_id))
+        {
+            throw new Exception('Invalid $provider_id argument given:' . $provider_id);
+        }
+
+        if (count($settings) == 0 || ! is_array($settings))
+        {
+            throw new Exception('Invalid $settings argument given:' . print_r($settings, TRUE));
+        }
+
+        // Check if the setting record exists in db.
+        $num_rows = $this->db->get_where('ea_user_settings',
+            ['id_users' => $provider_id])->num_rows();
+        if ($num_rows == 0)
+        {
+            $this->db->insert('ea_user_settings', $settings);
+        }
     }
 
     /**

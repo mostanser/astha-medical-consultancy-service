@@ -228,7 +228,7 @@ window.FrontendBook = window.FrontendBook || {};
 
             // Add the "Any Provider" entry.
             if ($('#select-provider option').length >= 1) {
-                $('#select-provider').append(new Option('- ' + EALang.any_provider + ' -', 'any-provider'));
+                $('#select-provider').append(new Option(EALang.any_provider, 'any-provider', true, true));
             }
 
             FrontendBookApi.getUnavailableDates($('#select-provider').val(), $(this).val(),
@@ -522,13 +522,16 @@ window.FrontendBook = window.FrontendBook || {};
         $('#appointment-details').html(html);
 
         // Customer Details
-        var firstName = GeneralFunctions.escapeHtml($('#first-name').val());
-        var lastName = GeneralFunctions.escapeHtml($('#last-name').val());
+        var fullName = GeneralFunctions.escapeHtml($('#full-name').val());
+        var fullNameSplits = fullName.split(' ');
+        var firstName = fullNameSplits[0];
+        var lastName = fullNameSplits[1];
         var phoneNumber = GeneralFunctions.escapeHtml($('#phone-number').val());
         var email = GeneralFunctions.escapeHtml($('#email').val());
         var address = GeneralFunctions.escapeHtml($('#address').val());
         var city = GeneralFunctions.escapeHtml($('#city').val());
         var zipCode = GeneralFunctions.escapeHtml($('#zip-code').val());
+        var password = GeneralFunctions.escapeHtml($('#customer-password').val());
 
         html =
             '<h4>' + firstName + ' ' + lastName + '</h4>' +
@@ -541,7 +544,6 @@ window.FrontendBook = window.FrontendBook || {};
             '<br/>' +
             EALang.city + ': ' + city +
             '<br/>' +
-            EALang.zip_code + ': ' + zipCode +
             '</p>';
 
         $('#customer-details').html(html);
@@ -551,13 +553,15 @@ window.FrontendBook = window.FrontendBook || {};
         var postData = {};
 
         postData.customer = {
-            last_name: $('#last-name').val(),
-            first_name: $('#first-name').val(),
+            full_name: $('#full-name').val(),
+            last_name: lastName,
+            first_name: firstName,
             email: $('#email').val(),
             phone_number: $('#phone-number').val(),
             address: $('#address').val(),
             city: $('#city').val(),
-            zip_code: $('#zip-code').val()
+            zip_code: $('#zip-code').val(),
+            password: $('#password').val()
         };
 
         postData.appointment = {

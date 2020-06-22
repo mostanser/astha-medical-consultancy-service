@@ -69,14 +69,14 @@ window.FrontendBookApi = window.FrontendBookApi || {};
             // service. Fill the available hours div with response data.
             if (response.length > 0) {
                 var currColumn = 1;
-                $('#available-hours').html('<div style="width:80px; float:left;"></div>');
+                $('#available-hours').html('<div style="width:60px; float:left; border: 1px solid #d4d4d4; margin-right:5px; margin-bottom: 5px;"></div>');
 
                 var timeFormat = GlobalVariables.timeFormat === 'regular' ? 'h:mm tt' : 'HH:mm';
 
                 $.each(response, function (index, availableHour) {
-                    if ((currColumn * 10) < (index + 1)) {
+                    if ((currColumn * 12) < (index + 1)) {
                         currColumn++;
-                        $('#available-hours').append('<div style="width:80px; float:left;"></div>');
+                        $('#available-hours').append('<div style="width:60px; float:left; border: 1px solid #d4d4d4; margin-right:5px; margin-bottom: 5px;"></div>');
                     }
 
                     $('#available-hours div:eq(' + (currColumn - 1) + ')').append(
@@ -179,8 +179,13 @@ window.FrontendBookApi = window.FrontendBookApi || {};
                     return false;
                 }
 
+                //window.location.href = GlobalVariables.baseUrl
+                //    + '/index.php/appointments/book_success/' + response.appointment_id;
+
+                //=== redirect to payment page
                 window.location.href = GlobalVariables.baseUrl
-                    + '/index.php/appointments/book_success/' + response.appointment_id;
+                    + '/booking/requestssl/' + response.appointment_id;
+
             })
             .fail(function (jqxhr, textStatus, errorThrown) {
                 $('.captcha-title small').trigger('click');

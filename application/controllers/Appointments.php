@@ -302,8 +302,10 @@ class Appointments extends CI_Controller {
         $this->load->model('providers_model');
         $this->load->model('services_model');
         $this->load->model('settings_model');
+        $this->load->model('customers_model');
         //retrieve the data needed in the view
         $appointment = $this->appointments_model->get_row($appointment_id);
+        $customer = $this->customers_model->get_row($appointment['id_users_customer']);
         $provider = $this->providers_model->get_row($appointment['id_users_provider']);
         $service = $this->services_model->get_row($appointment['id_services']);
         $company_name = $this->settings_model->get_setting('company_name');
@@ -315,11 +317,34 @@ class Appointments extends CI_Controller {
             'provider_data' => $provider,
             'service_data' => $service,
             'company_name' => $company_name,
+            'customer' => $customer,
         ];
         if ($exceptions)
         {
             $view['exceptions'] = $exceptions;
         }
+
+        $user_data['user_id'] = $customer['id'];
+        $user_data['user_email'] = $customer['email'];
+        $user_data['role_slug'] = 'customer';
+        $user_data['username'] = $customer['phone_number'];
+
+
+//        echo '<pre>';
+//        print_r($customer);
+//        print_r($user_data);
+//        echo '</pre>';
+//        die;
+
+        if ($user_data)
+        {
+            $this->session->set_userdata($user_data); // Save data on user's session.
+            header('Refresh:7; url= '. base_url().'/backend');
+        }
+        else
+        {
+        }
+
         $this->load->view('appointments/book_success', $view);
     }
 
@@ -474,6 +499,11 @@ class Appointments extends CI_Controller {
             $appointment = $_POST['post_data']['appointment'];
             $customer = $_POST['post_data']['customer'];
 
+            //=== set customer and appointment data in session
+            $exceptions = $this->session->flashdata('customer');
+            $exceptions = $this->session->flashdata('appointment');
+            $this->session->set_userdata(array('customer'=>$customer, 'appointment'=>$appointment));
+
             if ($this->customers_model->exists($customer))
             {
                 $customer['id'] = $this->customers_model->find_record_id($customer);
@@ -594,7 +624,7 @@ class Appointments extends CI_Controller {
             $this->output
                 ->set_content_type('application/json')
                 ->set_output(json_encode([
-                    'appointment_id' => $appointment['id']
+                    'appointment_id' => $appointment['id'], 'customer_id' => $customer_id
                 ]));
         }
         catch (Exception $exc)

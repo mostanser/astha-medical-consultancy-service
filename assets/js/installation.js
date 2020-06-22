@@ -56,7 +56,7 @@ $(function () {
                     .show();
 
                 setTimeout(function () {
-                    window.location.href = GlobalVariables.baseUrl + '/index.php/backend';
+                    window.location.href = GlobalVariables.baseUrl + '/backend';
                 }, 1000);
             })
             .fail(GeneralFunctions.ajaxFailureHandler);

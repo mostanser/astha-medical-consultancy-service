@@ -35,8 +35,10 @@
 
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#providers" aria-controls="providers" role="tab" data-toggle="tab"><?= lang('providers') ?></a></li>
+        <?php if($role_slug == 'admin') { ?>
         <li role="presentation"><a href="#secretaries" aria-controls="secretaries" role="tab" data-toggle="tab"><?= lang('secretaries') ?></a></li>
         <li role="presentation"><a href="#admins" aria-controls="admins" role="tab" data-toggle="tab"><?= lang('admins') ?></a></li>
+        <?php } ?>
     </ul>
 
     <div class="tab-content">
@@ -70,18 +72,22 @@
                 <div class="record-details column col-xs-12 col-sm-7">
                     <div class="pull-left">
                         <div class="add-edit-delete-group btn-group">
+                            <?php if($role_slug == 'admin') { ?>
                             <button id="add-provider" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-plus"></span>
                                 <?= lang('add') ?>
                             </button>
+                            <?php } ?>
                             <button id="edit-provider" class="btn btn-default" disabled="disabled">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <?= lang('edit') ?>
                             </button>
+                            <?php if($role_slug == 'admin') { ?>
                             <button id="delete-provider" class="btn btn-default" disabled="disabled">
                                 <span class="glyphicon glyphicon-remove"></span>
                                 <?= lang('delete') ?>
                             </button>
+                            <?php } ?>
                         </div>
 
                         <div class="save-cancel-group btn-group" style="display:none;">

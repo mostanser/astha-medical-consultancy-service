@@ -10,12 +10,33 @@
     <link rel="stylesheet" type="text/css" href="<?= asset_url('assets/ext/bootstrap/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?= asset_url('assets/css/frontend.css') ?>">
 
-    <link rel="icon" type="image/x-icon" href="<?= asset_url('assets/img/favicon.ico') ?>">
-    <link rel="icon" sizes="192x192" href="<?= asset_url('assets/img/logo.png') ?>">
+    <link rel="apple-touch-icon" sizes="57x57" href="<?= asset_url('assets/img/icon/apple-icon-57x57.png') ?>">
+    <link rel="apple-touch-icon" sizes="60x60" href="<?= asset_url('assets/img/icon/apple-icon-60x60.png') ?>">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?= asset_url('assets/img/icon/apple-icon-72x72.png') ?>">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?= asset_url('assets/img/icon/apple-icon-76x76.png') ?>">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?= asset_url('assets/img/icon/apple-icon-114x114.png') ?>">
+    <link rel="apple-touch-icon" sizes="120x120" href="<?= asset_url('assets/img/icon/apple-icon-120x120.png') ?>">
+    <link rel="apple-touch-icon" sizes="144x144" href="<?= asset_url('assets/img/icon/apple-icon-144x144.png') ?>">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?= asset_url('assets/img/icon/apple-icon-152x152.png') ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= asset_url('assets/img/icon/apple-icon-180x180.png') ?>">
+    <link rel="icon" type="image/png" sizes="192x192"  href="<?= asset_url('assets/img/icon/android-icon-192x192.png') ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= asset_url('assets/img/icon/favicon-32x32.png') ?>">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?= asset_url('assets/img/icon/favicon-96x96.png') ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= asset_url('assets/img/icon/favicon-16x16.png') ?>">
+    <link rel="manifest" href="<?= asset_url('assets/img/icon/manifest.json')  ?>">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="<?= asset_url('assets/img/icon/ms-icon-144x144.png') ?>">
+    <meta name="theme-color" content="#ffffff">
+
 </head>
 <body>
     <div id="main" class="container">
         <div class="wrapper row">
+            <div id="header-logo" class="" style="text-align: center; width: auto;">
+                <img src="<?= base_url('assets/img/astha-logo.jpg') ?>" style="height: 150px">
+                <div style="font-weight: normal;font-size: 25px;color: whitesmoke;margin-top: 3px;"><?= $company_name ?></div>
+            </div>
+
             <div id="success-frame" class="frame-container
                     col-xs-12
                     col-sm-offset-1 col-sm-10
@@ -28,11 +49,11 @@
                 <div class="col-xs-12 col-sm-10">
                     <?php
                         echo '
-                            <h3>' . lang('appointment_registered') . '</h3>
+                            <h5>' . lang('appointment_registered') . '</h5>
                             <p>' . lang('appointment_details_was_sent_to_you') . '</p>
-                            <a href="' . site_url() . '" class="btn btn-success btn-large">
+                            <a href="' . site_url('backend') . '" class="btn btn-success btn-large">
                                 <span class="glyphicon glyphicon-calendar"></span> ' .
-                                lang('go_to_booking_page') . '
+                                lang('add_patient_details') . '
                             </a>
                         ';
 

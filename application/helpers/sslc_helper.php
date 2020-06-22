@@ -19,3 +19,31 @@
 
 	# IF BROWSE FROM LOCAL HOST, KEEP true
 	define("SSLCZ_IS_LOCAL_HOST", true);
+
+
+ function getRecordQuery($tran_id){
+    $sql = "select * from ea_orders WHERE transaction_id='" . $tran_id . "'";
+    return $sql;
+ }
+ function saveTransactionQuery($post_data){
+    $name = $post_data['cus_name'];
+    $email = $post_data['cus_email'];
+    $customer_id = $post_data['customer_id'];
+    $appointment_id = $post_data['appointment_id'];
+
+    $phone = $post_data['cus_phone'];
+    $transaction_amount = $post_data['total_amount'];
+    $address = '';
+    $transaction_id = (isset($post_data['tran_id'])) ? $post_data['tran_id'] : '0';
+    $currency = $post_data['currency'];
+    $sql = "INSERT INTO ea_orders (name, email, phone, amount, address, status, transaction_id,currency, customer_id, appointment_id)
+                                    VALUES ('$name', '$email', '$phone','$transaction_amount','$address','Pending', '$transaction_id','$currency','$customer_id','$appointment_id')";
+
+    return $sql;
+ }
+
+ function updateTransactionQuery($tran_id, $type = 'Success'){
+    $sql = "UPDATE ea_orders SET status='$type' WHERE transaction_id='$tran_id'";
+
+    return $sql;
+}

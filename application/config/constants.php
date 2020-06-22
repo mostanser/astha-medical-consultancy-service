@@ -46,9 +46,9 @@ define('FOPEN_READ_WRITE_CREATE_STRICT', 'x+b');
 |
 */
 define('DB_SLUG_CUSTOMER', 'customer');
-define('DB_SLUG_PROVIDER', 'provider');
+define('DB_SLUG_PROVIDER', 'consultant');
 define('DB_SLUG_ADMIN', 'admin');
-define('DB_SLUG_SECRETARY', 'secretary');
+define('DB_SLUG_SECRETARY', 'operator');
 
 define('FILTER_TYPE_PROVIDER', 'provider');
 define('FILTER_TYPE_SERVICE', 'service');
@@ -66,6 +66,7 @@ define('PRIV_DELETE', 8);
 
 define('PRIV_APPOINTMENTS', 'appointments');
 define('PRIV_CUSTOMERS', 'customers');
+define('PRIV_CUSTOMERS_DASHBOARD', 'customer_dashboard');
 define('PRIV_SERVICES', 'services');
 define('PRIV_USERS', 'users');
 define('PRIV_SYSTEM_SETTINGS', 'system_settings');

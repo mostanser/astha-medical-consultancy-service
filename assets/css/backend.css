@@ -20,8 +20,8 @@ root {
 /* BACKEND GENERAL ELEMENTS
    -------------------------------------------------------------------- */
 #header {
-    background-color: #39c678;
-    border-bottom: 4px solid #c0f1d6;
+    background-color: #F79939;
+    border-bottom: 4px solid #F7D956;
     box-shadow: none;
     border-radius: 0;
     margin-bottom: 15px;
@@ -66,12 +66,12 @@ root {
 }
 
 #header #header-menu .menu-item:hover:not(.active) {
-    background-color: #2A8F57;
+    background-color: #000000;
 }
 
 #header #header-menu .active {
-    color: #C5FFD6;
-    background: #29A067;
+    color: #DADADA;
+    background: #3A3A3A;
 }
 
 #footer {
@@ -687,6 +687,71 @@ body .form-horizontal .controls {
 #users-page #providers .record-details #provider-services .checkbox a {
     margin-left: 5px;
 }
+
+/* BACKEND CUSTOMER DASHBOARD PAGE
+   -------------------------------------------------------------------- */
+#customer-dashboard-page h2 {
+    color: #525252;
+}
+
+#customer-dashboard-page .nav {
+    background-color: #F4F4F4;
+    margin-bottom: 15px;
+}
+
+#customer-dashboard-page .nav li {
+    cursor: pointer;
+}
+
+#customer-dashboard-page #user-notifications,
+#customer-dashboard-page #customer-notifications,
+#customer-dashboard-page #require-captcha {
+    outline: none;
+}
+
+#customer-dashboard-page #user-notifications.active,
+#customer-dashboard-page #customer-notifications.active,
+#customer-dashboard-page #require-captcha.active {
+    background: #B6DCFF;
+}
+
+#customer-dashboard-page #general fieldset .wrapper {
+    max-width: 1024px;
+}
+
+#customer-dashboard-page .working-plan-wrapper {
+    max-width: 600px;
+}
+
+#customer-dashboard-page .breaks-wrapper {
+    max-width: 500px;
+}
+
+#customer-dashboard-page .personal-info-wrapper {
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+#customer-dashboard-page .miscellaneous-wrapper {
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+#customer-dashboard-page #about {
+    max-width: 720px;
+}
+
+#customer-dashboard-page #about .current-version {
+    padding: 15px;
+    background: #F4F4F4;
+    font-size: 12px;
+    color: #444;
+}
+
+#customer-dashboard-page #update-ea {
+    margin-left: 12px;
+}
+
 
 /* BACKEND SETTINGS PAGE
    -------------------------------------------------------------------- */

@@ -50,7 +50,11 @@ class Backend extends CI_Controller {
     {
         $this->session->set_userdata('dest_url', site_url('backend'));
 
-        if ( ! $this->_has_privileges(PRIV_APPOINTMENTS))
+        $role_slug = $this->session->userdata('role_slug');
+        if($role_slug == 'customer' && ! $this->_has_privileges(PRIV_CUSTOMERS_DASHBOARD)) {
+            return;
+        }
+        else if ( ! $this->_has_privileges(PRIV_APPOINTMENTS))
         {
             return;
         }
@@ -66,7 +70,8 @@ class Backend extends CI_Controller {
 
         $view['base_url'] = $this->config->item('base_url');
         $view['user_display_name'] = $this->user_model->get_user_display_name($this->session->userdata('user_id'));
-        $view['active_menu'] = PRIV_APPOINTMENTS;
+        if($role_slug == 'customer') $view['active_menu'] = PRIV_CUSTOMERS_DASHBOARD;
+        else $view['active_menu'] = PRIV_APPOINTMENTS;
         $view['book_advance_timeout'] = $this->settings_model->get_setting('book_advance_timeout');
         $view['date_format'] = $this->settings_model->get_setting('date_format');
         $view['time_format'] = $this->settings_model->get_setting('time_format');
@@ -102,7 +107,10 @@ class Backend extends CI_Controller {
         }
 
         $this->load->view('backend/header', $view);
-        $this->load->view('backend/calendar', $view);
+        if($role_slug == 'customer')
+            $this->load->view('backend/customer_dashboard', $view);
+        else
+            $this->load->view('backend/calendar', $view);
         $this->load->view('backend/footer', $view);
     }
 
@@ -364,5 +372,9 @@ class Backend extends CI_Controller {
         $view['user_email'] = $this->session->userdata('user_email');
         $view['role_slug'] = $this->session->userdata('role_slug');
         $view['privileges'] = $this->roles_model->get_privileges($this->session->userdata('role_slug'));
+    }
+
+    public function dashboard(){
+        $this->session->set_userdata('dest_url', site_url('backend/settings'));
     }
 }

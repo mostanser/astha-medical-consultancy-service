@@ -171,6 +171,8 @@ class Email {
         $mailer->AddAddress($recipientEmail->get());
         $mailer->Subject = $title->get();
         $mailer->Body = $html;
+        //$mailer->set_newline("\r\n");
+
 
         $mailer->addStringAttachment($icsStream->get(), 'invitation.ics');
 

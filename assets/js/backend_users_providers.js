@@ -105,6 +105,12 @@
          * Event: Edit Provider Button "Click"
          */
         $('#providers').on('click', '#edit-provider', function () {
+
+            var selectedProviderID = $('#filter-providers .selected').attr('data-id');
+            if(GlobalVariables.user.id != selectedProviderID){
+                alert("You do not have permission to EDIT this");
+                return false;
+            }
             $('#providers .add-edit-delete-group').hide();
             $('#providers .save-cancel-group').show();
             $('#filter-providers button').prop('disabled', true);
